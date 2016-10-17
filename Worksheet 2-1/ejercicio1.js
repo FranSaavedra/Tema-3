@@ -13,7 +13,7 @@ e) find words that contain 'is'
 
 f) assert all numbers are divisible by three
 
-g)  zip two arrays together
+g) zip two arrays together
 
 h) sort joined array from smallest to largest
 
@@ -38,26 +38,23 @@ function findLongestString (array) {
 	return mayor;
 }
 function findEvenNumbers (array) {
-	var arrayPar = new Array();
-	arrayPar = array.filter(function(element,index,array){
+	array.filter(function(element,index,array){
 		return (index % 2 === 0);
 	});
-	return arrayPar;
+	return array;
 
 }
 function findOddNumbers (array) {
-	var arrayImpar = new Array();
-	arrayImpar = array.filter(function(element,index,array){
+	array.filter(function(element,index,array){
 		return (index % 2 != 0);
 	});
-	return arrayImpar;
+	return array;
 }
 function containsIS (array) {
-	var arrayIS = new Array();
-	arrayIS = array.filter(function(element,index,array){
+	array.filter(function(element,index,array){
 		return (element.contains("IS"));
 	});
-	return arrayIS;
+	return array;
 }
 function allDivisibleThree (array) {
 	var divisible = true;
@@ -66,6 +63,39 @@ function allDivisibleThree (array) {
 			divisible = false;
 			break;
 		}
-
 	}
+	return divisible;
+}
+function zipArrays (array1,array2) {
+	return array1.concat(array2);
+}
+
+function sortArray (array) {
+	array.sort(function (a,b){
+		return a - b;
+	});
+	return array;
+}
+function removeFirstWord (array) {
+	array.shift();
+	return array; 
+}
+function addWordInitArray (array,word) {
+	array.unshift(word);
+	return array;
+}
+function replaceElements (array,index,newWord) {
+	array[index] = newWord;
+	return array;
+}
+function findInitWithJ (array) {
+	var newArray = new Array();
+	for (var i = 0; i < array.length; i++) {
+		var posEspacio = array[i].indexOf(" ");
+		if (array[i].charAt(posEspacio + 1) == "J") {
+			newArray.unshift(array[i].charAt(0));
+		}
+	}
+	newArray.sort();
+	return newArray;
 }
