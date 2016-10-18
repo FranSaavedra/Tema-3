@@ -26,6 +26,53 @@ k) replace some elements
 l) Over an array with names, find all entries whose firstname starts with 'J',  
 create projection combined of only the initials of the name and then sort alphabetically*/
 
+var array = new Array(10);
+iniciarArray(array);
+var array2 = new Array(3);
+iniciarArray2(array2);
+var array3 = new Array(3);
+iniciarArray3(array3);
+var array4 = new Array(3);
+iniciarArray4(array4);
+
+document.write("findLargestNumber: " + findLargestNumber(array) + "<br/>");
+document.write("findLongestString: " + findLongestString(array2) + "<br/>");
+document.write("findEvenNumbers: " + findEvenNumbers(array) + "<br/>");
+document.write("findOddNumbers: " + findOddNumbers(array) + "<br/>");
+document.write("containsIS: " + containsIS(array2) + "<br/>");
+document.write("allDivisibleThree: " + allDivisibleThree(array3) + "<br/>");
+document.write("zipArrays: " + zipArrays(array,array3) + "<br/>");
+document.write("sortArray: " + sortArray(array) + "<br/>");
+document.write("removeFirstWord: " + removeFirstWord(array2) + "<br/>");
+document.write("addWordInitArray: " + addWordInitArray(array2,"palabra") + "<br/>");
+document.write("replaceElements: " + replaceElements(array2,1,"andalucia") + "<br/>");
+document.write("findInitWithJ: " + findInitWithJ(array4) + "<br/>");
+
+function iniciarArray (array) {
+	for (var i = 0; i < 10; i++) {
+		array[i] = Math.floor(Math.random() * 1000 + 1);
+	}
+}
+
+function iniciarArray2 (array) {
+	array[0] = "hola";
+	array[1] = "granada";
+	array[2] = "IS";
+	
+}
+function iniciarArray3 (array) {
+	array[0] = 3;
+	array[1] = 6;
+	array[2] = 9;
+	
+}
+function iniciarArray4 (array) {
+	array[0] = "Antonio Jimenez";
+	array[1] = "Fran Saavedra";
+	array[2] = "Javier Jimenez";
+	
+}
+
 function findLargestNumber (array) {
 	return Math.max(...array);//... permite expandir una expresión para poder pasar arrays. 
 }
@@ -38,23 +85,18 @@ function findLongestString (array) {
 	return mayor;
 }
 function findEvenNumbers (array) {
-	array.filter(function(element,index,array){
-		return (index % 2 === 0);
+	return array.filter(function(element){
+		return element % 2 == 0;
 	});
-	return array;
 
 }
 function findOddNumbers (array) {
-	array.filter(function(element,index,array){
-		return (index % 2 != 0);
+	return array.filter(function(element){
+		return element % 2 != 0;
 	});
-	return array;
 }
 function containsIS (array) {
-	array.filter(function(element,index,array){
-		return (element.contains("IS"));
-	});
-	return array;
+	return array.includes("IS");
 }
 function allDivisibleThree (array) {
 	var divisible = true;
@@ -90,12 +132,14 @@ function replaceElements (array,index,newWord) {
 }
 function findInitWithJ (array) {
 	var newArray = new Array();
+	var pos = array.indexOf(" ");
 	for (var i = 0; i < array.length; i++) {
-		var posEspacio = array[i].indexOf(" ");
-		if (array[i].charAt(posEspacio + 1) == "J") {
-			newArray.unshift(array[i].charAt(0));
+		var temporal = array[i].split(" ");
+		if (temporal[1].charAt(0) == "J") {
+			newArray.unshift(temporal[0]);
 		}
 	}
+
 	newArray.sort();
 	return newArray;
 }
